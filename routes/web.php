@@ -17,6 +17,19 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/home', function(){
-    return view('pages.dashboard');
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', function(){
+        return view('pages.dashboard');
+    });
+
+    Route::get('/examenes', function () {
+        return view('pages.lista-examenes');
+    })->name('examenes');
+
+
+    Route::get('/examen/nombre-de-prueba', function () {
+        return view('pages.examen');
+    })->name('examen');
 });
